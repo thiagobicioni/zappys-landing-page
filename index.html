@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zappys - Sua Máquina de Vendas Automáticas no WhatsApp</title>
+    <meta name="description" content="Transforme seu WhatsApp em uma máquina de vendas automática. Crie funis, dispare mensagens e gerencie tudo de um só lugar.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'zappys-orange': '#f0971c',
+                        'zappys-gold': '#ffc371',
+                        'dark-bg': '#111827',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .gradient-radial {
+            background: radial-gradient(circle at center, rgba(240, 151, 28, 0.1) 0%, transparent 70%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #f0971c 0%, #ffc371 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #f0971c 0%, #ffc371 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(240, 151, 28, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .border-gradient {
+            border: 2px solid transparent;
+            background: linear-gradient(#1f2937, #1f2937) padding-box,
+                        linear-gradient(135deg, #f0971c, #ffc371) border-box;
+        }
+        
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-inter bg-dark-bg text-white overflow-x-hidden">
+
+    <!-- Seção 1: Herói (Atenção) -->
+    <section class="min-h-screen flex items-center justify-center relative gradient-radial">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Mockup 3D Flutuante -->
+            <div class="mb-12 animate-float">
+                <div class="relative mx-auto w-80 h-80 md:w-96 md:h-96">
+                    <!-- WhatsApp Web Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl shadow-2xl opacity-20"></div>
+                    
+                    <!-- Zappys Interface Mockup -->
+                    <div class="absolute top-8 left-8 right-8 bottom-8 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-xl border border-zappys-orange/20">
+                        <div class="p-6">
+                            <!-- Header -->
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-zappys-orange rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">Z</span>
+                                </div>
+                                <div class="ml-3">
+                                    <div class="w-20 h-2 bg-zappys-orange rounded"></div>
+                                    <div class="w-16 h-1 bg-gray-600 rounded mt-1"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Chat Messages -->
+                            <div class="space-y-3">
+                                <div class="bg-zappys-orange/20 rounded-lg p-2">
+                                    <div class="w-24 h-1 bg-zappys-orange rounded"></div>
+                                    <div class="w-20 h-1 bg-zappys-orange/60 rounded mt-1"></div>
+                                </div>
+                                <div class="bg-gray-700 rounded-lg p-2">
+                                    <div class="w-28 h-1 bg-gray-400 rounded"></div>
+                                    <div class="w-16 h-1 bg-gray-500 rounded mt-1"></div>
+                                </div>
+                                <div class="bg-zappys-orange/20 rounded-lg p-2">
+                                    <div class="w-32 h-1 bg-zappys-orange rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Título Principal -->
+            <h1 class="text-5xl md:text-7xl font-black mb-6 animate-fade-in">
+                Sua <span class="text-gradient">máquina de vendas</span><br>
+                automáticas no WhatsApp
+            </h1>
+            
+            <!-- Subtítulo -->
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up">
+                Chega de perder tempo e vendas. Crie funis, dispare mensagens e gerencie tudo de um só lugar. 
+                <span class="text-zappys-orange font-semibold">O poder de um CRM, dentro do seu WhatsApp.</span>
+            </p>
+            
+            <!-- CTA Principal -->
+            <button class="btn-gradient text-white font-bold text-lg px-12 py-4 rounded-full shadow-lg animate-slide-up">
+                🚀 QUERO VENDER MAIS AGORA
+            </button>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-zappys-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Seção 2: O Fim do Caos (Interesse) -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <!-- Título da Seção -->
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 scroll-animate">
+                Você se identifica com essa <span class="text-gradient">bagunça?</span>
+            </h2>
+            
+            <!-- Grid de Problemas -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Problema 1 -->
+                <div class="text-center p-8 bg-gray-800 rounded-2xl card-hover scroll-animate">
+                    <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-400">Respostas Lentas</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Clientes que esperam, compram do concorrente. Cada minuto de atraso é uma venda perdida.
+                    </p>
+                </div>
+                
+                <!-- Problema 2 -->
+                <div class="text-center p-8 bg-gray-800 rounded-2xl card-hover scroll-animate">
+                    <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-400">Falta de Controle</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Quem foi contactado? Qual foi a última mensagem? Sem um processo, sua equipe está a voar às cegas.
+                    </p>
+                </div>
+                
+                <!-- Problema 3 -->
+                <div class="text-center p-8 bg-gray-800 rounded-2xl card-hover scroll-animate">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">Processo Manual</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Copiar e colar a mesma mensagem dezenas de vezes por dia? Seu tempo vale mais do que isso.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: Funcionalidades (Desejo) -->
+    <section class="py-20 bg-dark-bg">
+        <div class="container mx-auto px-6">
+            <!-- Título da Seção -->
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-20 scroll-animate">
+                O poder da <span class="text-gradient">automação</span>, na sua mão
+            </h2>
+
+            <!-- Funcionalidade 1: Funis de Vendas -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="scroll-animate">
+                    <!-- Mockup do Construtor de Funis -->
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+                            <div class="w-4 h-4 bg-yellow-500 rounded-full mr-2"></div>
+                            <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                        </div>
+
+                        <!-- Funil Visual -->
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-zappys-orange rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                                <div class="ml-4 flex-1">
+                                    <div class="bg-zappys-orange/20 rounded-lg p-3">
+                                        <div class="w-32 h-2 bg-zappys-orange rounded mb-1"></div>
+                                        <div class="w-24 h-1 bg-zappys-orange/60 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center ml-4">
+                                <div class="w-1 h-8 bg-gray-600"></div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-zappys-orange rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                                <div class="ml-4 flex-1">
+                                    <div class="bg-gray-700 rounded-lg p-3">
+                                        <div class="w-28 h-2 bg-gray-400 rounded mb-1"></div>
+                                        <div class="w-20 h-1 bg-gray-500 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center ml-4">
+                                <div class="w-1 h-8 bg-gray-600"></div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">✓</div>
+                                <div class="ml-4 flex-1">
+                                    <div class="bg-green-500/20 rounded-lg p-3">
+                                        <div class="w-36 h-2 bg-green-400 rounded mb-1"></div>
+                                        <div class="w-28 h-1 bg-green-500/60 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-animate">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">
+                        Crie <span class="text-gradient">Jornadas</span>, Não Apenas Conversas
+                    </h3>
+                    <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                        Construa sequências de mensagens automáticas que guiam seu cliente desde o primeiro "olá" até o "compra efetuada".
+                        Qualifique leads, envie conteúdo e feche vendas enquanto você dorme.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Sequências automáticas personalizadas
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Qualificação automática de leads
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Vendas 24/7 no automático
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Funcionalidade 2: Disparos Inteligentes -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 md:order-1 scroll-animate">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">
+                        Comunicação em <span class="text-gradient">Massa</span>, Pessoal e Segura
+                    </h3>
+                    <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                        Envie mensagens personalizadas para centenas de contatos de uma só vez, sem o risco de bloqueios.
+                        Perfeito para lançamentos, promoções e novidades.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Disparos seguros e inteligentes
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Personalização automática
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Agendamento inteligente
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="order-1 md:order-2 scroll-animate">
+                    <!-- Mockup de Agendamento -->
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="text-lg font-bold text-white">Agendar Disparo</h4>
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <div class="text-sm text-gray-400 mb-2">Contatos Selecionados</div>
+                                <div class="text-2xl font-bold text-zappys-orange">1,247</div>
+                            </div>
+
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <div class="text-sm text-gray-400 mb-2">Agendado para</div>
+                                <div class="text-lg font-semibold text-white">Hoje, 14:30</div>
+                            </div>
+
+                            <div class="bg-zappys-orange/20 rounded-lg p-4 border border-zappys-orange/30">
+                                <div class="text-sm text-zappys-orange mb-2">Mensagem</div>
+                                <div class="text-white">Olá {nome}! 🚀 Temos uma oferta especial...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funcionalidade 3: Gatilhos Inteligentes -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animate">
+                    <!-- Mockup de Gatilhos -->
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-8 h-8 bg-zappys-orange rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-white ml-3">Gatilhos Ativos</h4>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">SE receber:</span>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div class="text-white font-semibold">"preço", "valor", "quanto custa"</div>
+                                <div class="text-sm text-gray-400 mt-2">ENTÃO enviar:</div>
+                                <div class="text-zappys-orange mt-1">Tabela de preços + Link de pagamento</div>
+                            </div>
+
+                            <div class="bg-gray-700 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-gray-400">SE receber:</span>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div class="text-white font-semibold">"horário", "funcionamento"</div>
+                                <div class="text-sm text-gray-400 mt-2">ENTÃO enviar:</div>
+                                <div class="text-zappys-orange mt-1">Horários de atendimento</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-animate">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">
+                        Respostas <span class="text-gradient">Instantâneas</span>, 24/7
+                    </h3>
+                    <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                        Configure gatilhos por palavras-chave. Quando um cliente perguntar o preço, o horário ou qualquer outra coisa,
+                        o Zappys responde por si, na hora.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Respostas automáticas inteligentes
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Atendimento 24 horas por dia
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Zero tempo de espera
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Planos (Ação) -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <!-- Título da Seção -->
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 scroll-animate">
+                Um plano para <span class="text-gradient">decolar</span> seu negócio
+            </h2>
+
+            <!-- Cards de Preços -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Plano Profissional -->
+                <div class="bg-gray-800 rounded-2xl p-8 card-hover scroll-animate">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Profissional</h3>
+                        <div class="text-4xl font-black text-zappys-orange mb-2">R$ 97<span class="text-lg text-gray-400">/mês</span></div>
+                        <p class="text-gray-400">Perfeito para começar</p>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Até 1.000 contatos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Funis de vendas ilimitados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Disparos inteligentes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Gatilhos automáticos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Suporte por WhatsApp</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 rounded-full transition-all duration-300">
+                        Assinar Agora
+                    </button>
+                </div>
+
+                <!-- Plano Empresarial (Destaque) -->
+                <div class="bg-gray-800 rounded-2xl p-8 card-hover scroll-animate border-gradient relative">
+                    <!-- Selo "Mais Popular" -->
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="btn-gradient text-white font-bold px-6 py-2 rounded-full text-sm">
+                            ⭐ MAIS POPULAR
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-8 mt-4">
+                        <h3 class="text-2xl font-bold mb-2">Empresarial</h3>
+                        <div class="text-4xl font-black text-zappys-orange mb-2">R$ 197<span class="text-lg text-gray-400">/mês</span></div>
+                        <p class="text-gray-400">Para quem quer escalar</p>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Contatos ilimitados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Multi-usuário (até 5 pessoas)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Relatórios avançados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Integrações com CRM</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-zappys-orange mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Suporte prioritário</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full btn-gradient text-white font-bold py-4 rounded-full">
+                        Assinar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: FAQ (Quebra de Objeções) -->
+    <section class="py-20 bg-dark-bg">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <!-- Título da Seção -->
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 scroll-animate">
+                Sem <span class="text-gradient">letras pequenas</span>
+            </h2>
+
+            <!-- FAQ Accordion -->
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden scroll-animate">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-700 transition-colors" onclick="toggleFAQ(1)">
+                        <span class="text-xl font-semibold">É seguro? Corro risco de bloqueio?</span>
+                        <svg id="faq-icon-1" class="w-6 h-6 text-zappys-orange transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-1" class="hidden p-6 pt-0 text-gray-300">
+                        <p>Absolutamente seguro! O Zappys simula comportamento humano real e respeita todos os limites do WhatsApp. Usamos tecnologia avançada de anti-detecção e milhares de usuários confiam em nós há anos sem nenhum bloqueio.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden scroll-animate">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-700 transition-colors" onclick="toggleFAQ(2)">
+                        <span class="text-xl font-semibold">Preciso de um número de telefone novo?</span>
+                        <svg id="faq-icon-2" class="w-6 h-6 text-zappys-orange transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-2" class="hidden p-6 pt-0 text-gray-300">
+                        <p>Não! Você pode usar seu número atual. O Zappys funciona como uma extensão do seu WhatsApp, mantendo todas as suas conversas e contatos. É como ter um assistente virtual que nunca dorme.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden scroll-animate">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-700 transition-colors" onclick="toggleFAQ(3)">
+                        <span class="text-xl font-semibold">Funciona em qualquer computador?</span>
+                        <svg id="faq-icon-3" class="w-6 h-6 text-zappys-orange transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-3" class="hidden p-6 pt-0 text-gray-300">
+                        <p>Sim! Windows, Mac ou Linux - o Zappys funciona em qualquer sistema. Basta ter o Google Chrome instalado e uma conexão com a internet. Simples assim.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-gray-800 rounded-2xl overflow-hidden scroll-animate">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-700 transition-colors" onclick="toggleFAQ(4)">
+                        <span class="text-xl font-semibold">Posso cancelar quando quiser?</span>
+                        <svg id="faq-icon-4" class="w-6 h-6 text-zappys-orange transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-4" class="hidden p-6 pt-0 text-gray-300">
+                        <p>Claro! Sem pegadinhas ou multas. Você pode cancelar sua assinatura a qualquer momento com apenas um clique. Acreditamos que você vai amar o Zappys, mas a escolha é sempre sua.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 6: CTA Final (Ação Urgente) -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto scroll-animate">
+                <h2 class="text-4xl md:text-6xl font-black mb-6">
+                    Pare de deixar <span class="text-gradient">dinheiro na mesa</span>
+                </h2>
+
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+                    Junte-se a <span class="text-zappys-orange font-bold">centenas de empresas</span> que já estão a transformar
+                    o WhatsApp numa ferramenta de crescimento.
+                </p>
+
+                <!-- Estatísticas -->
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-zappys-orange mb-2">+500</div>
+                        <div class="text-gray-400">Empresas Ativas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-zappys-orange mb-2">+2M</div>
+                        <div class="text-gray-400">Mensagens Enviadas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-zappys-orange mb-2">98%</div>
+                        <div class="text-gray-400">Satisfação</div>
+                    </div>
+                </div>
+
+                <!-- CTA Final -->
+                <button class="btn-gradient text-white font-bold text-xl px-16 py-6 rounded-full shadow-2xl text-center inline-block">
+                    🚀 QUERO O ZAPPYS AGORA
+                </button>
+
+                <p class="text-sm text-gray-500 mt-6">
+                    ✅ Sem compromisso • ✅ Cancele quando quiser • ✅ Suporte 24/7
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-8 h-8 bg-zappys-orange rounded-full flex items-center justify-center mr-3">
+                    <span class="text-white font-bold">Z</span>
+                </div>
+                <span class="text-xl font-bold">Zappys</span>
+            </div>
+            <p class="text-gray-400 text-sm">
+                © 2024 Zappys. Todos os direitos reservados. Transformando WhatsApp em máquinas de vendas.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth Scroll for CTAs
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aqui você pode adicionar links para Hotmart ou outras ações
+                console.log('CTA clicked:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
