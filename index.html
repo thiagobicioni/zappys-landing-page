@@ -107,15 +107,15 @@
 
     <!-- Header Fixo -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <img src="assets/icon_128.png" alt="Zappys Logo" class="w-10 h-10 rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="w-10 h-10 bg-gradient-to-br from-zappys-orange to-zappys-gold rounded-xl flex items-center justify-center shadow-lg" style="display: none;">
-                        <span class="text-white font-black text-lg">Z</span>
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <img src="assets/icon_128.png" alt="Zappys Logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-zappys-orange to-zappys-gold rounded-xl flex items-center justify-center shadow-lg" style="display: none;">
+                        <span class="text-white font-black text-sm sm:text-lg">Z</span>
                     </div>
-                    <span class="text-2xl font-black text-gradient">Zappys</span>
+                    <span class="text-xl sm:text-2xl font-black text-gradient">Zappys</span>
                 </div>
 
                 <!-- Navegação (Desktop) -->
@@ -125,16 +125,27 @@
                     <a href="#faq" class="text-gray-300 hover:text-zappys-orange transition-colors">FAQ</a>
                 </nav>
 
-                <!-- Botões -->
-                <div class="flex items-center space-x-4">
-                    <a href="https://painel.zappys.com.br/login" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                <!-- Botões Mobile -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Botão Entrar - Mobile -->
+                    <a href="https://painel.zappys.com.br/login" class="sm:hidden text-gray-300 hover:text-white transition-colors p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                    </a>
+
+                    <!-- Botão Entrar - Desktop -->
+                    <a href="https://painel.zappys.com.br/login" class="hidden sm:flex text-gray-300 hover:text-white transition-colors items-center">
                         Entrar
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </a>
-                    <button class="bg-lime-500 hover:bg-lime-400 text-black font-bold px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105">
-                        Teste Grátis
+
+                    <!-- Botão Teste Grátis - Responsivo -->
+                    <button class="bg-lime-500 hover:bg-lime-400 text-black font-bold px-3 py-2 sm:px-6 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                        <span class="sm:hidden">Teste</span>
+                        <span class="hidden sm:inline">Teste Grátis</span>
                     </button>
                 </div>
             </div>
